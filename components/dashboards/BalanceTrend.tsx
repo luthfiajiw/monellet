@@ -30,8 +30,7 @@ export default function BalanceTrend({}: Props) {
       <div className="
         py-3
         px-4
-        w-full
-        h-72
+        h-72 w-inherit
         mr-4 ml-4
         bg-white
         rounded-lg
