@@ -1,8 +1,6 @@
 'use client'
 
 import React from 'react'
-import { AiFillAppstore, AiFillSignal } from "react-icons/ai";
-import { IoTimerSharp, IoReceipt } from "react-icons/io5";
 import { TfiMoreAlt, TfiMore } from "react-icons/tfi";
 import { 
   MdDashboard, MdOutlineDashboard,
@@ -24,7 +22,7 @@ export default function Sidebar() {
       activeIcon: MdDashboard,
     },
     {
-      label: "Tansactions",
+      label: "Transactions",
       href: "/transactions",
       icon: MdOutlineReceiptLong,
       activeIcon: MdReceiptLong,
@@ -51,7 +49,7 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden lg:flex flex-col gap-2.5">
-      <div className='pt-2 pb-3 mb-3'>
+      <div className='pt-2 pb-3'>
         <img
           width={35}
           className='ml-2.5'

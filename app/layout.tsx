@@ -1,11 +1,11 @@
 import { Toaster } from 'react-hot-toast'
 import './globals.css'
-import { Karla } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
-const inter = Karla({ weight: "400", subsets: ["latin"] })
+const inter = Inter({ weight: "400", subsets: ["latin"] })
 
 export const metadata = {
-  title: 'SilaWallet',
+  title: 'Monellet',
   description: 'Luthfi\'s personal budget tracker',
 }
 

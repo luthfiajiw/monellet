@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply h-full
+  @apply h-full bg-neutral-50
 }
 
 p, i, h1 {

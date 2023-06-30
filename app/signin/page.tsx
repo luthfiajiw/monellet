@@ -1,12 +1,13 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useCallback, useState } from "react";
+import { FunctionComponent, useCallback, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import PinInput from "react-pin-input";
 
 const SigninPage: FunctionComponent = () => {
   const router = useRouter()
+  const divRef = useRef<HTMLDivElement>(null)
   const [disabled, setdisabled] = useState(false)
 
   function resolveAfter5Sec() {
@@ -18,6 +19,7 @@ const SigninPage: FunctionComponent = () => {
   }
 
   const handleSignin = useCallback(async () => {
+    divRef.current?.focus()
     toast.loading("Signing In", { id: "loading" })
     await resolveAfter5Sec()
     toast.dismiss("loading")
@@ -27,7 +29,10 @@ const SigninPage: FunctionComponent = () => {
   
   return (
     <section className="container relative h-screen mx-auto max-w-6xl">
-      <div className="center-screen flex flex-col items-center">
+      <div
+        ref={divRef}
+        className="center-screen flex flex-col items-center"
+      >
         <img
           src="/images/lawallet.png" width={100}
           className="mb-10"

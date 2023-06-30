@@ -1,10 +1,19 @@
+import AccountCards from "@/components/dashboards/AccountCards";
+import BalanceTrend from "@/components/dashboards/BalanceTrend";
+import Header from "@/components/layouts/Header";
 import Layout from "@/components/layouts/Layout";
 import { FunctionComponent } from "react";
 
 const DashboardPage: FunctionComponent = () => {
   return (
     <Layout>
-      <h1>Dashboard</h1>
+      <Header
+        label="Dashboard"
+        color="text-white"
+        bgColor="bg-primary"
+      />
+      <AccountCards />
+      <BalanceTrend />
     </Layout>
   );
 };

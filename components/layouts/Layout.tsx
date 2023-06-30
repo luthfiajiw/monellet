@@ -6,18 +6,17 @@ const Layout = ({ children }: {
 }) => {
   return (
     <section className="container mx-auto max-w-6xl h-full">
-      <section className="grid grid-cols-1 lg:grid-cols-5 lg:h-screen">
-        <Sidebar />
+      <section className="grid grid-cols-1 lg:grid-cols-4 lg:h-screen">
+        <div className="fixed top-0">
+          <Sidebar />
+        </div>
         <div className="
           lg:col-start-2
           lg:col-span-2
-          lg:border-x-[2px]
-          lg:border-zinc-100
         ">
           {children}
         </div>
-        <div className="lg:col-span-2">
-          <h1>Right</h1>
+        <div className="">
         </div>
       </section>
     </section>
