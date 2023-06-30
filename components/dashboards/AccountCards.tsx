@@ -42,7 +42,6 @@ export default function AccountCards({}: Props) {
 
   return (
     <div className="
-      bg-primary
       w-full
       py-4
       px-4
@@ -51,7 +50,7 @@ export default function AccountCards({}: Props) {
       <div className="grid grid-cols-2 gap-3">
         {accounts.map(account => {
           return (
-            <div className="p-3 bg-white rounded-lg flex flex-col gap-2 items-start justify-center shadow-md shadow-yellow-700 drop-shadow-xl">
+            <div className="p-3 bg-white rounded-lg flex flex-col gap-2 items-start justify-center shadow-md shadow-neutral-200">
               <div className="flex flex-row gap-2 items-center">
                 <div className={`p-1 rounded-md ${account.color} bg-`}>
                   {handleIcon(account.category)}
@@ -64,7 +63,7 @@ export default function AccountCards({}: Props) {
             </div>
           )
         })}
-        <div className="p-3 bg-white rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer bg-opacity-40 shadow-md shadow-yellow-700 drop-shadow-xl">
+        <div className="p-3 bg-white rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer bg-opacity-40 shadow-md shadow-neutral-200">
           <div className="p-2 rounded-full bg-white">
             <BsPlusLg color="color-secondary" />
           </div>

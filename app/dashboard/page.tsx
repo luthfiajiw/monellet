@@ -9,8 +9,6 @@ const DashboardPage: FunctionComponent = () => {
     <Layout>
       <Header
         label="Dashboard"
-        color="text-white"
-        bgColor="bg-primary"
       />
       <AccountCards />
       <BalanceTrend />

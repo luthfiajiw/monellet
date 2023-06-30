@@ -24,7 +24,7 @@ export default function BalanceTrend({}: Props) {
 
   return (
     <Fragment>
-      <p className="text-lg mt-4 mb-1 mx-4">
+      <p className="text-lg mt-4 mb-1.5 mx-4">
         Balance Trend
       </p>
       <div className="
@@ -34,7 +34,7 @@ export default function BalanceTrend({}: Props) {
         mr-4 ml-4
         bg-white
         rounded-lg
-        shadow-md shadow-gray-200
+        shadow-md shadow-neutral-200
         flex flex-col items-start
       ">
         <p className="text-slate-400 text-xs lg:text-sm">TOTAL</p>
@@ -51,7 +51,7 @@ export default function BalanceTrend({}: Props) {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="label" />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} />
             <Legend />
             <Area type="monotone" stackId="1" dataKey="Dompet" stroke="rgb(251, 191, 36)" fill='rgb(251, 191, 36)' />
             <Area type="monotone" stackId="1" dataKey="BCA" stroke="rgb(3, 105, 161)" fill='rgb(3, 105, 161)' />
@@ -62,3 +62,20 @@ export default function BalanceTrend({}: Props) {
     </Fragment>
   )
 }
+
+const CustomTooltip = ({ active, payload, label } : any) => {
+  if (active && payload && payload.length) {
+    console.log(payload)
+    return (
+      <div className="felx flex-col gap-1 backdrop-blur-sm bg-white bg-opacity-70 p-2 rounded-md">
+        {payload && payload.map((data: any) => {
+          return <p>
+            {data.name}: Rp{data.value.toLocaleString("id-ID")}
+          </p>
+        })}
+      </div>
+    );
+  }
+
+  return null;
+};

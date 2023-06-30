@@ -12,7 +12,6 @@ export default function Header({ label, color, bgColor }: Props) {
       <h1 className={`
         text-xl
         font-semibold
-        ${color ?? "color-secondary"}
       `}>
         {label}
       </h1>

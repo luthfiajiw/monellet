@@ -35,15 +35,15 @@ export default function SidebarItem({
         mr-4
         rounded-full
         cursor-pointer
-        hover:bg-orange-50
+        hover:bg-slate-100
       '
     >
       {isActive ? (
-        <ActiveIcon size={24} className='color-secondary'/>
+        <ActiveIcon size={24}/>
       ) : (
-        <Icon size={24} className='color-primary'/>
+        <Icon size={24} className='text-neutral-400'/>
       )}
-      <p className={`text-xl ml-4 ${isActive ? "font-semibold color-secondary" : "font-normal color-primary"}`}>
+      <p className={`text-xl ml-4 ${isActive ? "font-semibold" : "font-light text-neutral-400"}`}>
         {label}
       </p>
     </div>

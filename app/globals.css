@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply h-full bg-neutral-50
+  @apply h-full bg-neutral-100
 }
 
 p, i, h1 {
@@ -15,6 +15,10 @@ p, i, h1 {
 }
 
 .recharts-legend-item-text {
+  font-size: 12px !important;
+}
+
+.recharts-text, .recharts-cartesian-axis-tick-value {
   font-size: 12px !important;
 }
 .color-primary {
