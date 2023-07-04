@@ -65,7 +65,6 @@ export default function BalanceTrend({}: Props) {
 
 const CustomTooltip = ({ active, payload, label } : any) => {
   if (active && payload && payload.length) {
-    console.log(payload)
     return (
       <div className="felx flex-col gap-1 backdrop-blur-sm bg-white bg-opacity-70 p-2 rounded-md">
         {payload && payload.map((data: any) => {

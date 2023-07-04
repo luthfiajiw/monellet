@@ -43,7 +43,8 @@ export default function AccountCards({}: Props) {
   return (
     <div className="
       w-full
-      py-4
+      pt-4
+      pb-2
       px-4
       rounded-b-lg
     ">
@@ -64,8 +65,8 @@ export default function AccountCards({}: Props) {
           )
         })}
         <div className="p-3 bg-white rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer bg-opacity-40 shadow-md shadow-neutral-200">
-          <div className="p-2 rounded-full bg-white">
-            <BsPlusLg color="color-secondary" />
+          <div className="p-2 rounded-full bg-secondary">
+            <BsPlusLg className="text-white" />
           </div>
           <p className="text-zinc-900" >
             Add Account

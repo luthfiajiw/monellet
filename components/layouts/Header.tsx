@@ -2,17 +2,16 @@ import React from 'react'
 
 type Props = {
   label: string
-  color?: string
-  bgColor?: string
 }
 
-export default function Header({ label, color, bgColor }: Props) {
+export default function Header({ label }: Props) {
   return (
-    <div className={`py-3 px-3 sticky top-0 ${bgColor ?? "backdrop-blur-sm"}`}>
-      <h1 className={`
-        text-xl
-        font-semibold
-      `}>
+    <div className="
+      py-3 px-3
+      sticky top-0
+      backdrop-blur-sm bg-neutral-100 bg-opacity-80"
+    >
+      <h1 className="text-xl font-semibold">
         {label}
       </h1>
     </div>
