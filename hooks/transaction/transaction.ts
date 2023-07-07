@@ -8,6 +8,7 @@ interface Transaction {
 
 interface TransactionCategory {
   type: "expense" | "income" | "debt"
+  icon: string
   name: string
   color: string
 }

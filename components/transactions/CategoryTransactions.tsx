@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React, { Fragment } from 'react'
 import { IconType } from 'react-icons'
 
@@ -13,7 +14,12 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
     <Fragment>
       <div className='flex flex-row items-center justify-between py-4 w-full'>
         <div className='flex flex-row gap-2 items-center'>
-          <div className='rounded-full p-2 bg-red-600 h-min'>
+          <div
+            className='rounded-full p-2 h-min'
+            style={{
+              backgroundColor: categoryGroup.category.color
+            }}
+          >
             <Icon color='white' size={20}/>
           </div>
 
@@ -36,11 +42,13 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
             <div className='flex flex-row items-center justify-between pt-4 w-full'>
               <div className='flex flex-row gap-1 items-center'>
                 <div className='rounded-full h-min w-10 p-2'>
-                  <p className='text-lg'>11</p>
+                  <p className='text-lg'>
+                    {moment(transaction.date).format("DD")}
+                  </p>
                 </div>
 
                 <div className='flex flex-col'>
-                  <p className='text-sm'>Monday, July 2023</p>
+                  <p className='text-sm'>{moment(transaction.date).format('dddd')}, {moment(transaction.date).format("MMMM yyyy")}</p>
                   <p className='text-xs text-slate-400'>
                     {transaction.account}, {transaction.note}
                   </p>
