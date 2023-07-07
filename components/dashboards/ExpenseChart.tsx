@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
+import Card from '../cards/Card';
 type Props = {}
 
 export default function ExpenseChart({}: Props) {
@@ -41,19 +42,7 @@ export default function ExpenseChart({}: Props) {
   ];
 
   return (
-    <div className="
-      py-2
-      px-4
-      h-80 w-inherit
-      mr-4 ml-4
-      bg-white
-      rounded-lg
-      shadow-md shadow-neutral-200
-      flex flex-col items-start
-    ">
-      <p className="text-lg pb-2 mb-3 border-b border-neutral-200 w-full">
-        Expenses
-      </p>
+    <Card title="Expenses" className="h-80">
       <p className="text-slate-400 text-xs lg:text-sm">THIS MONTH</p>
       <p className="text-zinc-900 text-xl mt-0.5">
         IDR <span className="font-bold">1.937.000</span>
@@ -75,7 +64,7 @@ export default function ExpenseChart({}: Props) {
           />
         </PieChart>
       </ResponsiveContainer>
-    </div>
+    </Card>
   )
 }
 
@@ -105,7 +94,7 @@ const renderActiveShape = (props: any) => {
         fill="rgb(24 24 27)"
         style={{ fontWeight: 'bold' }}
       >
-        {value.toLocaleString()}
+        {value.toLocaleString("id-ID")}
       </text>
       <Sector
         cx={cx}

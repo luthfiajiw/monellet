@@ -3,6 +3,7 @@
 import React from 'react'
 import { faker } from '@faker-js/faker';
 import { CartesianGrid, Legend, Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import Card from '../cards/Card';
 
 type Props = {}
 
@@ -23,19 +24,7 @@ export default function BalanceTrend({}: Props) {
   })
 
   return (
-    <div className="
-      py-2
-      px-4
-      h-72 w-inherit
-      mr-4 ml-4
-      bg-white
-      rounded-lg
-      shadow-md shadow-neutral-200
-      flex flex-col items-start
-    ">
-      <p className="text-lg pb-2 mb-3 border-b border-neutral-200 w-full">
-        Balance Trend
-      </p>
+    <Card title='Balance Trend' className="mt-2 lg:mt-4 h-72">
       <p className="text-slate-400 text-xs lg:text-sm">TOTAL</p>
       <p className="text-zinc-900 text-xl mt-0.5 mb-4">
         IDR <span className="font-bold">15.350.000</span>
@@ -57,7 +46,7 @@ export default function BalanceTrend({}: Props) {
           <Area type="monotone" stackId="1" dataKey="Dana Syariah" stroke="rgb(101, 163, 13)" fill='rgb(101, 163, 13)' />
         </AreaChart>
       </ResponsiveContainer>
-    </div>
+    </Card>
   )
 }
 
