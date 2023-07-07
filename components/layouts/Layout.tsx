@@ -21,8 +21,10 @@ export const CenterLayout = ({ children }: {
 }) => {
   return (
     <div className="
+      py-4
       lg:col-start-2
       lg:col-span-2
+      flex flex-col gap-4
     ">
       {children}
     </div>
@@ -33,7 +35,7 @@ export const RightLayout = ({ children }: {
   children: ReactNode
 }) => {
   return (
-    <div className="lg:col-span-2 flex flex-col gap-4">
+    <div className="lg:col-span-2 flex flex-col gap-4 pb-4 lg:py-4">
       {children}
     </div>
   )

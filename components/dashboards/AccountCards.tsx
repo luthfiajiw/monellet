@@ -43,8 +43,6 @@ export default function AccountCards({}: Props) {
   return (
     <div className="
       w-full
-      pt-4
-      pb-2
       px-4
       rounded-b-lg
     ">

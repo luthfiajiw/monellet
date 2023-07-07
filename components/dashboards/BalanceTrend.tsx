@@ -24,7 +24,7 @@ export default function BalanceTrend({}: Props) {
   })
 
   return (
-    <Card title='Balance Trend' className="mt-2 lg:mt-4 h-72">
+    <Card title='Balance Trend' className="h-72 lg:h-96">
       <p className="text-slate-400 text-xs lg:text-sm">TOTAL</p>
       <p className="text-zinc-900 text-xl mt-0.5 mb-4">
         IDR <span className="font-bold">15.350.000</span>

@@ -16,7 +16,7 @@ export default function ExpenseChart({}: Props) {
     },
     {
       name: 'Transportation',
-      value: 300000,
+      value: 100000,
       fill: "rgb(234 88 12)"
     },
     {

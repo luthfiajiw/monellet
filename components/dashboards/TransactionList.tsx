@@ -17,7 +17,7 @@ export default function TransactionList({}: Props) {
     }
   }
   return (
-    <Card title='Last Transactions' className='mt-2'>
+    <Card title='Last Transactions'>
       {categoryTransactions.map(group => {
         return (
           <CategoryTransactions
@@ -81,18 +81,6 @@ const categoryTransactions : CategoryGroupTranscation[] = [
         date: "2023-07-02",
         account: "BCA",
         note: "Flazz",
-        amount: 100000,
-        category: {
-          icon: "MdDirectionsBus",
-          name: "Transportation",
-          type: "expense",
-          color: "rgb(234 88 12)"
-        }
-      },
-      {
-        date: "2023-07-01",
-        account: "BCA",
-        note: "Gojek",
         amount: 100000,
         category: {
           icon: "MdDirectionsBus",
