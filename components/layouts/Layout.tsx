@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Sidebar from "../sidebars/Sidebar";
 
-const Layout = ({ children }: {
+export const Layout = ({ children }: {
   children: ReactNode
 }) => {
   return (
@@ -10,17 +10,32 @@ const Layout = ({ children }: {
         <div className="fixed top-0">
           <Sidebar />
         </div>
-        <div className="
-          lg:col-start-2
-          lg:col-span-2
-        ">
-          {children}
-        </div>
-        <div className="lg:col-span-2">
-        </div>
+        {children}
       </section>
     </section>
   );
 };
 
-export default Layout;
+export const CenterLayout = ({ children }: {
+  children: ReactNode
+}) => {
+  return (
+    <div className="
+      lg:pt-4
+      lg:col-start-2
+      lg:col-span-2
+    ">
+      {children}
+    </div>
+  )
+}
+
+export const RightLayout = ({ children }: {
+  children: ReactNode
+}) => {
+  return (
+    <div className="lg:col-span-2 lg:pt-8 flex flex-col gap-4">
+      {children}
+    </div>
+  )
+}

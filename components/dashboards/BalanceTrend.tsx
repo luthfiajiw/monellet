@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import { faker } from '@faker-js/faker';
 import { CartesianGrid, Legend, Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -23,43 +23,41 @@ export default function BalanceTrend({}: Props) {
   })
 
   return (
-    <Fragment>
-      <p className="text-lg mt-4 mb-1.5 mx-4">
+    <div className="
+      py-2
+      px-4
+      h-72 w-inherit
+      mr-4 ml-4
+      bg-white
+      rounded-lg
+      shadow-md shadow-neutral-200
+      flex flex-col items-start
+    ">
+      <p className="text-lg pb-2 mb-3 border-b border-neutral-200 w-full">
         Balance Trend
       </p>
-      <div className="
-        py-3
-        px-4
-        h-72 w-inherit
-        mr-4 ml-4
-        bg-white
-        rounded-lg
-        shadow-md shadow-neutral-200
-        flex flex-col items-start
-      ">
-        <p className="text-slate-400 text-xs lg:text-sm">TOTAL</p>
-        <p className="text-zinc-900 text-xl mt-0.5 mb-4">
-          IDR <span className="font-bold">15.350.000</span>
-        </p>
-        <ResponsiveContainer width="100%" height="80%">
-          <AreaChart
-            data={data}
-            margin={{
-              top: 5,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="label" />
-            <Tooltip content={<CustomTooltip />} />
-            <Legend />
-            <Area type="monotone" stackId="1" dataKey="Dompet" stroke="rgb(251, 191, 36)" fill='rgb(251, 191, 36)' />
-            <Area type="monotone" stackId="1" dataKey="BCA" stroke="rgb(3, 105, 161)" fill='rgb(3, 105, 161)' />
-            <Area type="monotone" stackId="1" dataKey="Dana Syariah" stroke="rgb(101, 163, 13)" fill='rgb(101, 163, 13)' />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-    </Fragment>
+      <p className="text-slate-400 text-xs lg:text-sm">TOTAL</p>
+      <p className="text-zinc-900 text-xl mt-0.5 mb-4">
+        IDR <span className="font-bold">15.350.000</span>
+      </p>
+      <ResponsiveContainer width="100%" height="80%">
+        <AreaChart
+          data={data}
+          margin={{
+            top: 5,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="label" />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend />
+          <Area type="monotone" stackId="1" dataKey="Dompet" stroke="rgb(251, 191, 36)" fill='rgb(251, 191, 36)' />
+          <Area type="monotone" stackId="1" dataKey="BCA" stroke="rgb(3, 105, 161)" fill='rgb(3, 105, 161)' />
+          <Area type="monotone" stackId="1" dataKey="Dana Syariah" stroke="rgb(101, 163, 13)" fill='rgb(101, 163, 13)' />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

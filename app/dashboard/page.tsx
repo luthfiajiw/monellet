@@ -1,17 +1,19 @@
 import AccountCards from "@/components/dashboards/AccountCards";
 import BalanceTrend from "@/components/dashboards/BalanceTrend";
-import Header from "@/components/layouts/Header";
-import Layout from "@/components/layouts/Layout";
+import ExpenseChart from "@/components/dashboards/ExpenseChart";
+import { CenterLayout, Layout, RightLayout } from "@/components/layouts/Layout";
 import { FunctionComponent } from "react";
 
 const DashboardPage: FunctionComponent = () => {
   return (
     <Layout>
-      <Header
-        label="Dashboard"
-      />
-      <AccountCards />
-      <BalanceTrend />
+      <CenterLayout>
+        <AccountCards />
+      </CenterLayout>
+      <RightLayout>
+        <BalanceTrend />
+        <ExpenseChart />
+      </RightLayout>
     </Layout>
   );
 };
