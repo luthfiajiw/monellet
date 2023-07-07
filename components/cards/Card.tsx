@@ -19,7 +19,7 @@ export default function Card({ title, className, children }: Props) {
       flex flex-col items-start
       ${className}
     `}>
-      <p className="text-lg pb-2 mb-3 border-b border-neutral-200 w-full">
+      <p className="text-lg pb-2 w-full">
         {title}
       </p>
       {children}

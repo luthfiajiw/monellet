@@ -5,9 +5,9 @@ export const Layout = ({ children }: {
   children: ReactNode
 }) => {
   return (
-    <section className="container mx-auto max-w-7xl h-full">
+    <section className="container mx-auto h-full">
       <section className="grid grid-cols-1 lg:grid-cols-5 lg:h-screen">
-        <div className="fixed top-0">
+        <div className="fixed top-0 w-[16%] shadow-md shadow-neutral-200">
           <Sidebar />
         </div>
         {children}
