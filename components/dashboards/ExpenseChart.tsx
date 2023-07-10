@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, ResponsiveContainer, Legend } from 'recharts';
 import Card from '../cards/Card';
 type Props = {}
 
@@ -55,13 +55,14 @@ export default function ExpenseChart({}: Props) {
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={70}
-            outerRadius={90}
+            innerRadius={60}
+            outerRadius={80}
             fill="#8884d8"
             dataKey="value"
             onClick={(_, index) => setActiveIndex(index)}
             onMouseEnter={(_, index) => setActiveIndex(index)}
           />
+          <Legend />
         </PieChart>
       </ResponsiveContainer>
     </Card>
@@ -69,10 +70,7 @@ export default function ExpenseChart({}: Props) {
 }
 
 const renderActiveShape = (props: any) => {
-  const RADIAN = Math.PI / 180;
-  const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload, value } = props;
 
   return (
     <g>

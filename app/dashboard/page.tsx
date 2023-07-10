@@ -10,11 +10,11 @@ const DashboardPage: FunctionComponent = () => {
     <Layout>
       <CenterLayout>
         <AccountCards />
-        <BalanceTrend />
+        <TransactionList />
       </CenterLayout>
       <RightLayout>
+        <BalanceTrend />
         <ExpenseChart />
-        <TransactionList />
       </RightLayout>
     </Layout>
   );

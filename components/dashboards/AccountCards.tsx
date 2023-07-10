@@ -45,7 +45,11 @@ export default function AccountCards({}: Props) {
       w-full
       px-4
       rounded-b-lg
+      flex flex-col gap-2
     ">
+      <p className="text-lg w-full font-bold">
+        Accounts
+      </p>
       <div className="grid grid-cols-2 gap-3">
         {accounts.map(account => {
           return (
@@ -63,7 +67,7 @@ export default function AccountCards({}: Props) {
           )
         })}
         <div className="p-3 bg-white rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer bg-opacity-40 shadow-md shadow-neutral-200">
-          <div className="p-2 rounded-full bg-secondary">
+          <div className="p-2 rounded-full bg-sky-500">
             <BsPlusLg className="text-white" />
           </div>
           <p className="text-zinc-900" >

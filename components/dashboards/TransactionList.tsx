@@ -68,7 +68,7 @@ const categoryTransactions : CategoryGroupTranscation[] = [
     ]
   },
   {
-    count: 1,
+    count: 2,
     amount: 200000,
     category: {
       icon: "MdDirectionsBus",
@@ -82,6 +82,18 @@ const categoryTransactions : CategoryGroupTranscation[] = [
         account: "BCA",
         note: "Flazz",
         amount: 100000,
+        category: {
+          icon: "MdDirectionsBus",
+          name: "Transportation",
+          type: "expense",
+          color: "rgb(234 88 12)"
+        }
+      },
+      {
+        date: "2023-07-01",
+        account: "BCA",
+        note: "Gojek",
+        amount: 50000,
         category: {
           icon: "MdDirectionsBus",
           name: "Transportation",

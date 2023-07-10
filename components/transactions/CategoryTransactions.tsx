@@ -32,7 +32,7 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
         </div>
 
         <p>
-          -Rp {categoryGroup.amount.toLocaleString("id-ID")}
+          {categoryGroup.category.type === "income" ? "+Rp" : "-Rp"} {categoryGroup.amount.toLocaleString("id-ID")}
         </p>
       </div>
 
@@ -48,15 +48,17 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
                 </div>
 
                 <div className='flex flex-col'>
-                  <p className='text-sm'>{moment(transaction.date).format('dddd')}, {moment(transaction.date).format("MMMM yyyy")}</p>
+                  <p className='text-sm'>
+                    {moment(transaction.date).format('dddd')}, {moment(transaction.date).format("MMMM yyyy")}
+                  </p>
                   <p className='text-xs text-slate-400'>
                     {transaction.account}, {transaction.note}
                   </p>
                 </div>
               </div>
 
-              <p className='text-sm'>
-                -Rp {transaction.amount.toLocaleString("id-ID")}
+              <p className={`text-sm ${transaction.category.type === "income" ? "text-green-600" : "text-red-600"}`}>
+                {categoryGroup.category.type === "income" ? "+Rp" : "-Rp"} {transaction.amount.toLocaleString("id-ID")}
               </p>
             </div>
           )
