@@ -48,11 +48,11 @@ export default function Sidebar() {
   ]
 
   return (
-    <aside className="hidden lg:flex flex-col gap-2 bg-white h-screen pl-2">
-      <div className='py-3'>
+    <aside className="hidden lg:flex flex-col bg-white h-screen">
+      <div className='py-3 flex flex-row items-center ml-[1.1rem]'>
         <img
           width={35}
-          className='ml-2.5'
+          className='mb-2'
           src="/images/lawallet.png"
           alt="lawallet logo"
         />
