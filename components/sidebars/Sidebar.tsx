@@ -48,25 +48,39 @@ export default function Sidebar() {
   ]
 
   return (
-    <aside className="hidden lg:flex flex-col bg-white h-screen">
-      <div className='py-3 flex flex-row items-center ml-[1.1rem]'>
-        <img
-          width={35}
-          className='mb-2'
-          src="/images/lawallet.png"
-          alt="lawallet logo"
-        />
+    <aside className="hidden lg:flex flex-col justify-between bg-white h-screen">
+      <div>
+        <div className='py-3 ml-[1.1rem]'>
+          <img
+            width={35}
+            className='mb-2'
+            src="/images/lawallet.png"
+            alt="lawallet logo"
+          />
+        </div>
+        <ul>
+          {items.map(item => {
+            return <SidebarItem 
+              label={item.label}
+              href={item.href}
+              icon={item.icon}
+              activeIcon={item.activeIcon}
+              isActive={item.href === pathName}
+              onClick={() => router.push(item.href)}
+            />
+          })}
+        </ul>
       </div>
-      {items.map(item => {
-        return <SidebarItem 
-          label={item.label}
-          href={item.href}
-          icon={item.icon}
-          activeIcon={item.activeIcon}
-          isActive={item.href === pathName}
-          onClick={() => router.push(item.href)}
-        />
-      })}
+
+      <div className='flex flex-row items-center justify-between mx-2 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'>
+        <div className='flex flex-row gap-3 items-center'>
+          <div className='rounded-full w-8 h-8 p-1 bg-secondary'>
+            <p className='text-white text-center'>LA</p>
+          </div>
+          <p>Luthfi Aji</p>
+        </div>
+        <TfiMoreAlt size={18} />
+      </div>
     </aside>
   )
 }

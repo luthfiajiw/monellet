@@ -22,7 +22,7 @@ export default function SidebarItem({
   const ActiveIcon = activeIcon
 
   return (
-    <div
+    <li
       onClick={onClick}
       className='
         flex
@@ -47,6 +47,6 @@ export default function SidebarItem({
       <p className={`text-lg ml-4 ${isActive ? "font-semibold" : "font-light text-neutral-400"}`}>
         {label}
       </p>
-    </div>
+    </li>
   )
 }
