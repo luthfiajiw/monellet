@@ -48,7 +48,7 @@ export default function ExpenseChart({}: Props) {
         IDR <span className="font-bold">1.937.000</span>
       </p>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={100} height={100}>
+        <PieChart width={150} height={150}>
           <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
