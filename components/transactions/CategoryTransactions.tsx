@@ -11,7 +11,7 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
   const Icon = icon
 
   return (
-    <Fragment>
+    <li>
       <div className='flex flex-row items-center justify-between py-4 w-full'>
         <div className='flex flex-row gap-2 items-center'>
           <div
@@ -36,10 +36,10 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
         </p>
       </div>
 
-      <div className='w-full pb-4 border-y border-neutral-200'>
+      <ul className='w-full pb-4 border-y border-neutral-200'>
         {categoryGroup.transactions.map(transaction => {
           return (
-            <div className='flex flex-row items-center justify-between pt-4 w-full'>
+            <li className='flex flex-row items-center justify-between pt-4 w-full'>
               <div className='flex flex-row gap-1 items-center'>
                 <div className='rounded-full h-min w-10 p-2'>
                   <p className='text-lg'>
@@ -60,10 +60,10 @@ export default function CategoryTransactions({ categoryGroup, icon }: Props) {
               <p className={`text-sm ${transaction.category.type === "income" ? "text-green-600" : "text-red-600"}`}>
                 {categoryGroup.category.type === "income" ? "+Rp" : "-Rp"} {transaction.amount.toLocaleString("id-ID")}
               </p>
-            </div>
+            </li>
           )
         })}
-      </div>
-    </Fragment>
+      </ul>
+    </li>
   )
 }

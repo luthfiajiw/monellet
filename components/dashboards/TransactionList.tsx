@@ -18,14 +18,16 @@ export default function TransactionList({}: Props) {
   }
   return (
     <Card title='Last Transactions'>
-      {categoryTransactions.map(group => {
-        return (
-          <CategoryTransactions
-            icon={handleIcon(group.category.icon)!}
-            categoryGroup={group}
-          />
-        )
-      })}
+      <ul className='w-full'>
+        {categoryTransactions.map(group => {
+          return (
+            <CategoryTransactions
+              icon={handleIcon(group.category.icon)!}
+              categoryGroup={group}
+            />
+          )
+        })}
+      </ul>
     </Card>
   )
 }
