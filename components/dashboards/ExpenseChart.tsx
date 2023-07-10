@@ -55,8 +55,8 @@ export default function ExpenseChart({}: Props) {
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={80}
+            innerRadius={70}
+            outerRadius={90}
             fill="#8884d8"
             dataKey="value"
             onClick={(_, index) => setActiveIndex(index)}
