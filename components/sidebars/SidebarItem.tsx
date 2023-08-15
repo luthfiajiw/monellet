@@ -33,7 +33,7 @@ export default function SidebarItem({
         pl-4
         pr-6
         mr-4
-        ml-2
+        ml-1
         rounded-full
         cursor-pointer
         hover:bg-neutral-100

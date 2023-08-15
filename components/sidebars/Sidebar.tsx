@@ -50,7 +50,7 @@ export default function Sidebar() {
   return (
     <aside className="hidden lg:flex flex-col justify-between bg-white h-screen">
       <div>
-        <div className='py-3 ml-[1.1rem]'>
+        <div className='py-3 ml-3'>
           <img
             width={35}
             className='mb-2'
@@ -72,10 +72,10 @@ export default function Sidebar() {
         </ul>
       </div>
 
-      <div className='flex flex-row items-center justify-between mx-2 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'>
+      <div className='flex flex-row items-center justify-between ml-2 mr-2 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'>
         <div className='flex flex-row gap-3 items-center'>
-          <div className='rounded-full w-8 h-8 p-1 bg-secondary'>
-            <p className='text-white text-center'>LA</p>
+          <div className='rounded-full w-8 h-8 p-1.5 bg-secondary'>
+            <p className='text-white text-center text-sm'>LA</p>
           </div>
           <p>Luthfi Aji</p>
         </div>
