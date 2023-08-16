@@ -3,12 +3,12 @@ import { NextResponse } from "next/server"
 import bcrypt from 'bcrypt';
 import prisma from '@/lib/prismadb';
 
-export async function GET(request: Request) {
+export async function GET() {
   return new Response("Signup API")
 }
 
-export async function POST(request: Request) {
-  const body = await request.json()
+export async function POST(req: Request) {
+  const body = await req.json()
   const { name, email, password } = body
 
   const isEmailValid = /^[^@]+@\w+(\.\w+)+\w$/.test(email)
@@ -20,13 +20,13 @@ export async function POST(request: Request) {
       error: {}
     }
 
-    if (!name) err.error.name = "is required"
+    if (!name) err.error.name = "name is required"
 
-    if (!isEmailValid) err.error.email = "is invalid"
-    else if (!email) err.error.email = "is required"
+    if (!isEmailValid) err.error.email = "email is invalid"
+    else if (!email) err.error.email = "email is required"
 
-    if (!password) err.error.password = "is required"
-    if (password && password.length < 6) err.error.password = "should be at least 6 characters"
+    if (!password) err.error.password = "password is required"
+    if (password && password.length < 6) err.error.password = "password should be at least 6 characters"
 
     return NextResponse.json(err, { status: 406 })
   }
@@ -41,8 +41,10 @@ export async function POST(request: Request) {
     if (existingUser) {
       return NextResponse.json({
         status_code: 409,
-        message: "email is already registered"
-      })
+        error: {
+          message: "email is already registered"
+        }
+      }, { status: 409 })
     } else {
       const salt = await bcrypt.genSalt()
       const hash = await bcrypt.hash(password, salt)
@@ -55,10 +57,13 @@ export async function POST(request: Request) {
         }
       })
 
-      return NextResponse.json(newUser, { status: 201 })
+      return NextResponse.json({
+        status_code: 201,
+        message: "success",
+        data: newUser
+      }, { status: 201 })
     }
   } catch (error) {
-    console.log(error)
     return NextResponse.json(error, { status: 406 })
   }
 }
