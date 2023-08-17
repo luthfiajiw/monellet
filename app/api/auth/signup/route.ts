@@ -3,10 +3,6 @@ import { NextResponse } from "next/server"
 import bcrypt from 'bcrypt';
 import prisma from '@/lib/prismadb';
 
-export async function GET() {
-  return new Response("Signup API")
-}
-
 export async function POST(req: Request) {
   const body = await req.json()
   const { name, email, password } = body

@@ -5,6 +5,7 @@ import BalanceTrend from "@/components/dashboards/BalanceTrend";
 import ExpenseChart from "@/components/dashboards/ExpenseChart";
 import TransactionList from "@/components/dashboards/TransactionList";
 import { CenterLayout, Layout, RightLayout } from "@/components/layouts/Layout";
+import withAuth from "@/hoc/withAuth";
 import { FunctionComponent, useRef } from "react";
 
 const DashboardPage: FunctionComponent = () => {
@@ -39,4 +40,4 @@ const DashboardPage: FunctionComponent = () => {
   );
 };
 
-export default DashboardPage;
+export default withAuth(DashboardPage);

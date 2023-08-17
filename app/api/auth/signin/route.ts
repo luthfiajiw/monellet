@@ -47,6 +47,7 @@ export async function POST(req: Request) {
           status_code: 200,
           message: 'authentication successful',
           type: 'Bearer',
+          expired,
           access_token: jwtToken
         })
       } else {
@@ -55,7 +56,7 @@ export async function POST(req: Request) {
           error: {
             message: "authentication failed"
           }
-        })
+        }, { status: 401 })
       }
     } else {
       return NextResponse.json({

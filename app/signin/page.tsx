@@ -1,31 +1,26 @@
 'use client'
 
 import Card from "@/components/cards/Card";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useCallback, useRef, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import PinInput from "react-pin-input";
 
 const SigninPage: FunctionComponent = () => {
   const router = useRouter()
   const divRef = useRef<HTMLDivElement>(null)
+  const accessToken = Cookies.get("access_token")
   const [disabled, setdisabled] = useState(false)
 
-  function resolveAfter5Sec() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve('resolved');
-      }, 5000);
-    });
-  }
+  useEffect(() => {
+    if (accessToken) {
+      router.replace("/dashboard")
+    }
+  }, [])
 
   const handleSignin = useCallback(async () => {
     divRef.current?.focus()
-    toast.loading("Signing In", { id: "loading" })
-    await resolveAfter5Sec()
-    toast.dismiss("loading")
-    toast.success("Signed In")
-    router.replace("/dashboard")
   }, [])
   
   return (
