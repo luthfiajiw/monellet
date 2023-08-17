@@ -1,17 +1,21 @@
 'use client'
 
 import Card from "@/components/cards/Card";
+import Loading from "@/components/layouts/Loading";
+import useSignIn from "@/hooks/auth/useSignIn";
+import fetcher from "@/lib/fetcher";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useCallback, useEffect, useRef, useState } from "react";
-import { toast } from "react-hot-toast";
+import { FunctionComponent, useCallback, useEffect, useRef } from "react";
 import PinInput from "react-pin-input";
+import useSWR from "swr";
 
 const SigninPage: FunctionComponent = () => {
   const router = useRouter()
+  const signIn = useSignIn()
   const divRef = useRef<HTMLDivElement>(null)
   const accessToken = Cookies.get("access_token")
-  const [disabled, setdisabled] = useState(false)
+  const { isLoading } = useSWR('/api/auth/session', fetcher)
 
   useEffect(() => {
     if (accessToken) {
@@ -19,9 +23,14 @@ const SigninPage: FunctionComponent = () => {
     }
   }, [])
 
-  const handleSignin = useCallback(async () => {
+  const handleSignin = useCallback(async (value: string) => {
     divRef.current?.focus()
+    await signIn.onSubmit(value)
   }, [])
+
+  if (isLoading || accessToken) {
+    return <Loading />
+  }
   
   return (
     <section className="container relative h-screen mx-auto max-w-6xl">
@@ -41,7 +50,7 @@ const SigninPage: FunctionComponent = () => {
           <PinInput
             focus
             secret
-            disabled={disabled}
+            disabled={signIn.loading}
             autoSelect
             length={6}
             initialValue=""
@@ -52,14 +61,13 @@ const SigninPage: FunctionComponent = () => {
               marginBottom: "1rem"
             }}
             inputStyle={{
-              borderColor: disabled ? "#876445" : "#e5e7eb",
+              borderColor: signIn.loading ? "#876445" : "#e5e7eb",
               borderRadius: "8px",
               marginRight: "4px",
               marginLeft: "4px",
             }}
             onComplete={(value, index) => {
-              setdisabled(true)
-              handleSignin()
+              handleSignin(value)
             }}
           />
         </Card>

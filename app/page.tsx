@@ -1,5 +1,6 @@
 'use client'
 
+import Loading from '@/components/layouts/Loading';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation'
 import { FunctionComponent, useEffect } from "react";
@@ -17,17 +18,7 @@ const Page: FunctionComponent = () => {
     }
   }, [])
 
-  return (
-    <div className='relative mx-auto max-w-6xl h-screen'>
-      <div className="center-screen flex flex-col items-center">
-        <img src="/images/lawallet.png" width={100}/>
-        <CgSpinner
-          className="animate-spin color-primary mt-2"
-          size={22}
-        />
-      </div>
-    </div>
-  );
+  return <Loading />;
 };
 
 export default Page;
