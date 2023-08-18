@@ -3,7 +3,6 @@ import { IconType } from 'react-icons'
 
 type Props = {
   label: string
-  href: string
   isActive?: boolean
   icon: IconType
   activeIcon: IconType
@@ -12,7 +11,6 @@ type Props = {
 
 export default function SidebarItem({
   label,
-  href,
   isActive,
   icon,
   activeIcon,

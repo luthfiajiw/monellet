@@ -18,7 +18,11 @@ const useSignIn = () => {
         password: password
       })
 
-      Cookies.set("access_token", `Bearer ${res.data.access_token}`)
+      Cookies.set(
+        "access_token",
+        `Bearer ${res.data.access_token}`,
+        { expires: 30 }
+      )
       toast.dismiss("loading")
       toast.success("Signed In")
       authState.setLoading(false)

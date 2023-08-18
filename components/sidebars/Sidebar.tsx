@@ -6,11 +6,13 @@ import {
   MdDashboard, MdOutlineDashboard,
   MdOutlineReceiptLong, MdReceiptLong,
   MdMonetizationOn, MdOutlineMonetizationOn, 
-  MdAssessment, MdOutlineAssessment } from "react-icons/md";
+  MdAssessment, MdOutlineAssessment, MdOutlineLogout } from "react-icons/md";
 import SidebarItem from './SidebarItem';
 import { usePathname, useRouter } from 'next/navigation';
+import useSignOut from '@/hooks/auth/useSignOut';
 
 export default function Sidebar() {
+  const signOut = useSignOut()
   const pathName = usePathname()
   const router = useRouter()
 
@@ -62,7 +64,6 @@ export default function Sidebar() {
           {items.map(item => {
             return <SidebarItem 
               label={item.label}
-              href={item.href}
               icon={item.icon}
               activeIcon={item.activeIcon}
               isActive={item.href === pathName}
@@ -72,14 +73,14 @@ export default function Sidebar() {
         </ul>
       </div>
 
-      <div className='flex flex-row items-center justify-between ml-2 mr-2 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'>
-        <div className='flex flex-row gap-3 items-center'>
-          <div className='rounded-full w-8 h-8 p-1.5 bg-secondary'>
-            <p className='text-white text-center text-sm'>LA</p>
-          </div>
-          <p>Luthfi Aji</p>
-        </div>
-        <TfiMoreAlt size={18} />
+      <div
+        onClick={signOut.onSubmit}
+        className='flex flex-row tex items-center justify-between ml-2 mr-2 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'
+      >
+          <p className='text-error'>
+            Logout
+          </p>
+        <MdOutlineLogout className='text-error' />
       </div>
     </aside>
   )
