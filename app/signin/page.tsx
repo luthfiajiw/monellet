@@ -15,7 +15,6 @@ const SigninPage: FunctionComponent = () => {
   const signIn = useSignIn()
   const divRef = useRef<HTMLDivElement>(null)
   const accessToken = Cookies.get("access_token")
-  const { isLoading } = useSWR('/api/auth/session', fetcher)
 
   useEffect(() => {
     if (accessToken) {
@@ -28,7 +27,7 @@ const SigninPage: FunctionComponent = () => {
     await signIn.onSubmit(value)
   }, [])
 
-  if (isLoading || accessToken) {
+  if (signIn.loadSession || accessToken) {
     return <Loading />
   }
   

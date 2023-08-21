@@ -3,10 +3,13 @@ import useAuthState from "./states/useAuthState"
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
+import fetcher from "@/lib/fetcher";
 
 const useSignIn = () => {
   const router = useRouter()
   const authState = useAuthState()
+  const { isLoading: loadSession } = useSWR('/api/auth/session', fetcher)
 
   async function onSubmit(password: string) {
     try {
@@ -38,6 +41,7 @@ const useSignIn = () => {
 
   return {
     onSubmit,
+    loadSession,
     loading: authState.loading
   }
 }

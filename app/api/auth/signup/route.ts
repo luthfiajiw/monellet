@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 
       return NextResponse.json({
         status_code: 201,
-        message: "success",
+        message: "user created",
         data: newUser
       }, { status: 201 })
     }

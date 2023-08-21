@@ -15,4 +15,30 @@ model User {
   name String
   email String @unique
   hash String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt @default(now())
+
+  accounts Account[]
+}
+
+model AccountType {
+  id String @id @default(uuid())
+  name String @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt @default(now())
+
+  accounts Account[]
+}
+
+model Account {
+  id String @id @default(uuid())
+  name String
+  user_id String
+  account_type_id String
+  balance Int @default(0)
+  createdAt DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(3)
+
+  user User @relation(fields: [user_id], references: [id])
+  account_type AccountType @relation(fields: [account_type_id], references: [id])
 }
