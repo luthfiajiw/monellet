@@ -12,7 +12,6 @@ export async function POST(req: Request) {
   // ERROR HANDLING
   if (!email || !password || !isEmailValid || !name) {
     let err: any = {
-      status_code: 406,
       error: {}
     }
 
@@ -36,7 +35,6 @@ export async function POST(req: Request) {
   
     if (existingUser) {
       return NextResponse.json({
-        status_code: 409,
         error: {
           message: "email is already registered"
         }
@@ -54,7 +52,6 @@ export async function POST(req: Request) {
       })
 
       return NextResponse.json({
-        status_code: 201,
         message: "user created",
         data: newUser
       }, { status: 201 })

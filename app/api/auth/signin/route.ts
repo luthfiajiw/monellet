@@ -13,7 +13,6 @@ export async function POST(req: Request) {
   // ERROR HANDLING
   if (!email || !password) {
     let err: any = {
-      status_code: 406,
       error: {}
     }
 
@@ -44,7 +43,6 @@ export async function POST(req: Request) {
         }, env.JWT_SECRET as string)
 
         return NextResponse.json({
-          status_code: 200,
           message: 'authentication successful',
           type: 'Bearer',
           expired,
@@ -52,7 +50,6 @@ export async function POST(req: Request) {
         })
       } else {
         return NextResponse.json({
-          status_code: 401,
           error: {
             message: "authentication failed"
           }
@@ -60,7 +57,6 @@ export async function POST(req: Request) {
       }
     } else {
       return NextResponse.json({
-        status_code: 404,
         error: {
           message: "user not found"
         }
