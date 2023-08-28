@@ -2,8 +2,8 @@ import serverAuth from "@/lib/serverAuth";
 import { NextResponse } from "next/server";
 
 import prisma from '@/lib/prismadb';
-import pageQueryHelper from "@/lib/helpers/pageQueryHelper";
 import paginationHelper from "@/lib/helpers/paginationHelper";
+import pageQueryHelper from "@/lib/helpers/pageQueryHelper";
 import { invalidAuthResponse } from "@/lib/helpers/responseHelpers";
 
 export async function GET(req: Request) {
@@ -11,7 +11,7 @@ export async function GET(req: Request) {
 
   try {
     if (!session.expired && session.userId) {
-      const count = await prisma.account.aggregate({
+      const count = await prisma.accountType.aggregate({
         _count: {
           _all: true
         }
@@ -20,23 +20,13 @@ export async function GET(req: Request) {
       const { page, perPage } = pageQueryHelper(req)
       const pagination = paginationHelper(page, perPage, count._count._all)
 
-      let accounts = await prisma.account.findMany({
+      let types = await prisma.accountType.findMany({
         skip: (page - 1) * perPage,
         take: perPage,
         select: {
           id: true,
           name: true,
           icon: true,
-          color: true,
-          balance: true,
-          account_type: {
-            select: {
-              id: true,
-              name: true,
-              icon: true,
-              createdAt: true
-            }
-          },
           createdAt: true
         },
         where: {
@@ -52,7 +42,7 @@ export async function GET(req: Request) {
         data: {
           count: count._count._all,
           ...pagination,
-          results: accounts
+          results: types
         }
       })
     } else {
@@ -60,7 +50,7 @@ export async function GET(req: Request) {
     }
   } catch (error) {
     return NextResponse.json(error, { status: 500 })
-  }  
+  }
 }
 
 export async function POST(req: Request) {
@@ -69,51 +59,29 @@ export async function POST(req: Request) {
   try {
     if (!session.expired && session.userId) {
       const body = await req.json()
-      const { name, color, account_type, icon } = body
-      
-      // ERROR HANDLING
-      if (
-        !name ||
-        !account_type ||
-        !account_type?.id ||
-        !color
-      ) {
-        let err: any = {
-          error: {}
-        }
-
-        if (!name)
-          err.error.name = "account name is required"
-        if (!account_type || !account_type?.id) 
-          err.error.account_type = "account_type.id is required"
-        if (!color)
-          err.error.color = "account color is required"
-
-        return NextResponse.json(err, { status: 406 })
+      if (!body.name) {
+        return NextResponse.json({
+          error: {
+            name: "account type name is required"
+          }
+        }, { status: 406 })
+      } else {
+        const newAccountType = await prisma.accountType.create({
+          data: {
+            name: body.name,
+            user_id: session.userId
+          }
+        })
+    
+        return NextResponse.json({
+          message: "account type created",
+          data: newAccountType
+        }, { status: 201 })
       }
-
-      let data: any = {
-        name,
-        color,
-        icon,
-        account_type_id: account_type.id,
-        user_id: session.userId
-      }
-      
-      const newAccount = await prisma.account.create({
-        data
-      })
-
-      return NextResponse.json({
-        message: "account created",
-        data: newAccount
-      })
     } else {
       return invalidAuthResponse()
     }
   } catch (error) {
-    console.log(error);
-    
     return NextResponse.json(error, { status: 500 })
   }
 }

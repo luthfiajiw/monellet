@@ -19,23 +19,29 @@ model User {
   updatedAt DateTime  @updatedAt @default(now())
 
   accounts Account[]
+  account_types AccountType[]
 }
 
 model AccountType {
   id String @id @default(uuid())
   name String @unique
+  icon String?
+  user_id String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt @default(now())
 
+  user User @relation(fields: [user_id], references: [id])
   accounts Account[]
 }
 
 model Account {
   id String @id @default(uuid())
   name String
+  color String
+  icon String?
+  balance Float @default(0)
   user_id String
   account_type_id String
-  balance Float @default(0)
   createdAt DateTime  @default(now()) @db.Timestamptz(3)
   updatedAt DateTime  @updatedAt @db.Timestamptz(3)
 

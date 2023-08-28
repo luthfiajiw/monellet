@@ -55,7 +55,7 @@ export default function AccountCards({}: Props) {
           return (
             <div className="p-3 bg-white rounded-lg flex flex-col gap-2 items-start justify-center shadow-md shadow-neutral-200">
               <div className="flex flex-row gap-2 items-center">
-                <div className={`p-1 rounded-md ${account.color} bg-`}>
+                <div className={`p-1 rounded-md ${account.color}`}>
                   {handleIcon(account.category)}
                 </div>
                 <p className="text-sm lg:text-base">{account.name}</p>
