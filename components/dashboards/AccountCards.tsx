@@ -2,6 +2,7 @@ import React from 'react'
 import { BsCreditCardFill, BsPlusLg } from "react-icons/bs";
 import { FaCoins } from "react-icons/fa6";
 import { SlGraph } from "react-icons/sl";
+import AccountTypeModal from '../account/AccountModal';
 
 type Props = {}
 
@@ -11,19 +12,22 @@ export default function AccountCards({}: Props) {
       "category": "cash",
       "name": "Dompet",
       "balance": 350000,
-      "color": "bg-amber-400"
+      "color": "bg-amber-400",
+      "hover_color": "hover:bg-amber-400",
     },
     {
       "category": "bank",
       "name": "BCA",
       "balance": 3000000,
-      "color": "bg-sky-700"
+      "color": "bg-sky-700",
+      "hover_color": "hover:bg-sky-700",
     },
     {
       "category": "investment",
       "name": "Dana Syariah",
       "balance": 12000000,
-      "color": "bg-lime-600"
+      "color": "bg-lime-600",
+      "hover_color": "hover:bg-lime-600",
     },
   ]
 
@@ -52,8 +56,15 @@ export default function AccountCards({}: Props) {
       </p>
       <div className="grid grid-cols-2 gap-3">
         {accounts.map(account => {
+
           return (
-            <div className="p-3 bg-white rounded-lg flex flex-col gap-2 items-start justify-center shadow-md shadow-neutral-200">
+            <div
+              className={`
+                p-3 bg-white rounded-lg flex flex-col
+                gap-2 items-start justify-center
+                shadow-md shadow-neutral-200
+                cursor-pointer hover:bg-slate-50
+            `}>
               <div className="flex flex-row gap-2 items-center">
                 <div className={`p-1 rounded-md ${account.color}`}>
                   {handleIcon(account.category)}
@@ -66,7 +77,15 @@ export default function AccountCards({}: Props) {
             </div>
           )
         })}
-        <div className="p-3 bg-white rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer bg-opacity-40 shadow-md shadow-neutral-200">
+        <div
+          onClick={() => window.account_type_modal.showModal()}
+          className="
+            p-3 bg-white rounded-lg flex flex-col
+            items-center justify-center gap-1 cursor-pointer
+            bg-opacity-40 shadow-md shadow-neutral-200
+            hover:bg-slate-50
+          "
+        >
           <div className="p-2 rounded-full bg-sky-500">
             <BsPlusLg className="text-white" />
           </div>
@@ -75,6 +94,7 @@ export default function AccountCards({}: Props) {
           </p>
         </div>
       </div>
+      <AccountTypeModal />
     </div>
   )
 }

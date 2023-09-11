@@ -69,6 +69,7 @@ export async function POST(req: Request) {
         const newAccountType = await prisma.accountType.create({
           data: {
             name: body.name,
+            icon: body.icon,
             user_id: session.userId
           }
         })

@@ -52,10 +52,10 @@ export default function Sidebar() {
   return (
     <aside className="hidden lg:flex flex-col justify-between bg-white h-screen">
       <div>
-        <div className='py-3 ml-3'>
+        <div className='py-3 ml-5'>
           <img
             width={35}
-            className='mb-2'
+            className='mb-2 ml-0.5'
             src="/images/lawallet.png"
             alt="lawallet logo"
           />
@@ -75,7 +75,7 @@ export default function Sidebar() {
 
       <div
         onClick={signOut.onSubmit}
-        className='flex flex-row tex items-center justify-between ml-2 mr-2 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'
+        className='flex flex-row tex items-center justify-between ml-4 mr-3 my-4 rounded-full hover:cursor-pointer hover:bg-neutral-100 py-2 px-3'
       >
           <p className='text-error'>
             Logout
