@@ -4,6 +4,8 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import { BsCreditCardFill } from "react-icons/bs";
 import { FaCoins } from "react-icons/fa6";
 import { SlGraph } from "react-icons/sl";
+import Input from '../forms/Input';
+import Select from '../forms/Select';
 
 const accountTypes: AccountType[] = [
   {
@@ -23,12 +25,8 @@ const accountTypes: AccountType[] = [
   },
 ]
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
-
 const AccountModal = () => {
-  const [selected, setSelected] = useState(accountTypes[0])
+  const [selected, setSelected] = useState<AccountType>()
 
   function handleIcon(type: string, active?: boolean) {
     switch (type) {
@@ -48,100 +46,33 @@ const AccountModal = () => {
       <div className="modal-box">
         <h3 className="font-bold text-lg mb-6">Add Account</h3>
         <form action="">
-          <div className='mb-4'>
-            <label
-              htmlFor="account-name"
-              className='block text-sm mb-2'
-            >
-              Name
-            </label>
-            <input
-              id='account-name'
-              type="text"
-              placeholder='e.g. Bank'
-              className='
-                appearance-none
-                border rounded w-full p-3 leading-tight
-                focus:outline-none focus:shadow-outline
-                text-zinc-900 text-sm
-              '
-            />
-          </div>
-          <Listbox value={selected} onChange={setSelected}>
-            {({ open }) => {
-              return (
-                <>
-                  <Listbox.Label className="block text-sm mb-2">
-                    Type
-                  </Listbox.Label>
-                  <div className='relative'>
-                    <Listbox.Button className="relative border w-full cursor-default rounded bg-white px-3 py-[0.675rem] leading-tight text-left text-gray-900 sm:text-sm focus:outline-none focus:shadow-outline">
-                      <span className='flex items-center'>
-                        {handleIcon(selected.icon)}
-                        <span className="ml-3 block truncate">{selected.name}</span>
-                      </span>
-                      <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                        <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                      </span>
-                    </Listbox.Button>
-
-                    <Transition
-                      show={open}
-                      as={Fragment}
-                      leave='transition ease-in duration-100'
-                      leaveFrom='opacity-100'
-                      leaveTo='opacity-0'
-                    >
-                      <Listbox.Options
-                        className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded bg-white py-1 text-base focus:outline-none sm:text-sm"
-                      >
-                        {accountTypes.map(type => {
-                          return (
-                            <Listbox.Option
-                              key={type.id}
-                              className={({ active }) => 
-                                classNames(
-                                  active ? 'bg-sky-500 text-white' : 'text-gray-900',
-                                  'relative cursor-default select-none py-2 pl-3 pr-9'
-                                )
-                              }
-                              value={type}
-                            >
-                              {({ selected, active }) => {
-                                return (
-                                  <>
-                                    <div className="flex items-center">
-                                      {handleIcon(type.icon, active)}
-                                      <span
-                                        className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
-                                      >
-                                        {type.name}
-                                      </span>
-                                    </div>
-
-                                    {selected ? (
-                                      <span
-                                        className={classNames(
-                                          active ? 'text-white' : 'text-sky-500',
-                                          'absolute inset-y-0 right-0 flex items-center pr-4'
-                                        )}
-                                      >
-                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                      </span>
-                                    ) : null}
-                                  </>
-                                )
-                              }}
-                            </Listbox.Option>
-                          )
-                        })}
-                      </Listbox.Options>
-                    </Transition>
-                  </div>
-                </>
-              )
-            }}
-          </Listbox>
+          <Input
+            label='Name'
+            type='text'
+            placeholder='e.g. E-Wallet'
+          />
+          <Select<AccountType>
+            label='Type'
+            value={selected}
+            options={accountTypes}
+            onChange={(value) => setSelected(value)}
+            option={(value, isActive, isSelected) => (
+              <>
+                {handleIcon(value.icon, isActive)}
+                <span
+                  className={`ml-3 block truncate ${isSelected ? 'font-semibold' : 'font-normal'}`}
+                >
+                  {value.name}
+                </span>
+              </>
+            )}
+            selected={(value) => (
+              <span className='flex items-center'>
+                {handleIcon(value.icon)}  
+                <span className="ml-3 block truncate">{value.name}</span>
+              </span>
+            )}
+          />
           <div className='h-32'/>
         </form>
         <div className="modal-action">
