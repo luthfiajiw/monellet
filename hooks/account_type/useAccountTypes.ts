@@ -1,13 +1,33 @@
 import fetcher from "@/lib/fetcher"
 import useSWR from "swr"
+import useAccountTypeState from "./states/useAccountTypeState"
+import axios, { AxiosResponse } from "axios"
 
 const useAccountTypes = (id?: string) => {
+  const {
+    loadingFetch,
+    accountTypes,
+    setLoadingFetch,
+    setAccountTypes
+  } = useAccountTypeState()
   const path = id ? `/api/account-types/${id}` : '/api/account-types'
-  const { data, isLoading} = useSWR(path, fetcher)
+  
+  async function onGet() {
+    try {
+      setLoadingFetch(true)
+      const res: AxiosResponse = await fetcher(path)
+
+      setLoadingFetch(false)
+      setAccountTypes(res.data.result)
+    } catch (error) {
+      setLoadingFetch(false)
+    }
+  }
 
   return {
-    data,
-    isLoading
+    loadingFetch,
+    accountTypes,
+    onGet
   }
 }
 

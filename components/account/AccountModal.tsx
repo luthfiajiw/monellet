@@ -18,7 +18,7 @@ const AccountModal = () => {
       type: undefined
     }
   })
-  const { data: accountTypes, isLoading} = useAccountTypes()
+  const { accountTypes, loadingFetch, onGet } = useAccountTypes()
 
   function handleIcon(type: string, active?: boolean) {
     switch (type) {
@@ -62,11 +62,12 @@ const AccountModal = () => {
             render={({ field: { onChange, value } }) => (
               <Select<AccountType>
                 label='Type'
-                isLoading={isLoading}
+                isLoading={loadingFetch}
                 value={value}
-                options={accountTypes?.data?.result ?? []}
+                options={accountTypes}
                 error={errors.type}
                 onChange={onChange}
+                onClick={onGet}
                 option={(type, isActive, isSelected) => (
                   <>
                     {handleIcon(type.icon, isActive)}

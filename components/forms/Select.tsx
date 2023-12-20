@@ -14,6 +14,7 @@ interface Props<T> {
   value?: T
   options: T[]
   error?: FieldError
+  onClick?: () => void
   onChange: (value: T) => void
   selected: (value: T) => React.ReactElement,
   option: (value: T, isActive: boolean, isSelected: boolean) => React.ReactElement
@@ -38,7 +39,10 @@ function Select<T>(props: Props<T>) {
                 {props.label}
               </Listbox.Label>
               <div className='relative'>
-                <Listbox.Button className={`relative border ${props.error && 'border-red-500'} w-full cursor-default rounded bg-white px-3 py-[0.675rem] leading-tight text-left text-gray-900 sm:text-sm focus:outline-none focus:shadow-outline`}>
+                <Listbox.Button
+                  onClick={open ? undefined : props.onClick}
+                  className={`relative border ${props.error && 'border-red-500'} w-full cursor-default rounded bg-white px-3 py-[0.675rem] leading-tight text-left text-gray-900 sm:text-sm focus:outline-none focus:shadow-outline`}
+                >
                   { props.value
                     ? props.selected(props.value)
                     : <span className="block truncate text-neutral-400">Select {props.label}</span>
