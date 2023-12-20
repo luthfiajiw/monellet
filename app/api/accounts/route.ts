@@ -26,7 +26,6 @@ export async function GET(req: Request) {
         select: {
           id: true,
           name: true,
-          icon: true,
           color: true,
           balance: true,
           account_type: {
@@ -34,10 +33,8 @@ export async function GET(req: Request) {
               id: true,
               name: true,
               icon: true,
-              createdAt: true
             }
           },
-          createdAt: true
         },
         where: {
           user_id: session.userId
@@ -69,7 +66,7 @@ export async function POST(req: Request) {
   try {
     if (!session.expired && session.userId) {
       const body = await req.json()
-      const { name, color, account_type, icon } = body
+      const { name, color, account_type, balance } = body
       
       // ERROR HANDLING
       if (
@@ -95,7 +92,7 @@ export async function POST(req: Request) {
       let data: any = {
         name,
         color,
-        icon,
+        balance,
         account_type_id: account_type.id,
         user_id: session.userId
       }

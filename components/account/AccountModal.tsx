@@ -6,6 +6,7 @@ import Input from '../forms/Input';
 import Select from '../forms/Select';
 import useAccountTypes from '@/hooks/account_type/useAccountTypes';
 import { Controller, useForm } from 'react-hook-form';
+import ColorBox from '../forms/ColorBox';
 
 const AccountModal = () => {
   const [selected, setSelected] = useState<AccountType>()
@@ -13,6 +14,7 @@ const AccountModal = () => {
     defaultValues: {
       name: '',
       balance: '0',
+      color: undefined,
       type: undefined
     }
   })
@@ -84,8 +86,23 @@ const AccountModal = () => {
               />
             )}
           />
+          <Controller
+            name='color'
+            control={control}
+            rules={{
+              required: "Select a color",
+            }}
+            render={({ field: { onChange, value } }) => (
+              <div className='mt-4'>
+                <ColorBox
+                  value={value}
+                  onChange={onChange}
+                  error={errors.color}
+                />
+              </div>
+            )}
+          />
           
-          <div className='h-32'/>
           <div className="modal-action">
             <button
               className="btn"

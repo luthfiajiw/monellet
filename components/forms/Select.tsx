@@ -118,7 +118,7 @@ function Select<T>(props: Props<T>) {
         }}
       </Listbox>
       {props.error && (
-        <p className="mt-1 text-xs text-red-500">
+        <p className="mt-1 ml-1 text-xs text-red-500">
           {props.error.message}
         </p>
       )}
