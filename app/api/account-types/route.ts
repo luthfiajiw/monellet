@@ -42,7 +42,7 @@ export async function GET(req: Request) {
         data: {
           count: count._count._all,
           ...pagination,
-          results: types
+          result: types
         }
       })
     } else {

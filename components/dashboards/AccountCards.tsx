@@ -2,7 +2,7 @@ import React from 'react'
 import { BsCreditCardFill, BsPlusLg } from "react-icons/bs";
 import { FaCoins } from "react-icons/fa6";
 import { SlGraph } from "react-icons/sl";
-import AccountTypeModal from '../account/AccountModal';
+import AccountModal from '../account/AccountModal';
 
 type Props = {}
 
@@ -94,7 +94,7 @@ export default function AccountCards({}: Props) {
           </p>
         </div>
       </div>
-      <AccountTypeModal />
+      <AccountModal />
     </div>
   )
 }

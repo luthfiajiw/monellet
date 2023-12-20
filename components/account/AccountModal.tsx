@@ -1,32 +1,22 @@
-import React, { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
+import React, { useEffect, useState } from 'react'
 import { BsCreditCardFill } from "react-icons/bs";
 import { FaCoins } from "react-icons/fa6";
 import { SlGraph } from "react-icons/sl";
 import Input from '../forms/Input';
 import Select from '../forms/Select';
-
-const accountTypes: AccountType[] = [
-  {
-    id: "1",
-    name: "Bank",
-    icon: "BsCreditCardFill"
-  },
-  {
-    id: "2",
-    name: "Cash",
-    icon: "FaCoins"
-  },
-  {
-    id: "3",
-    name: "Investment",
-    icon: "SlGraph"
-  },
-]
+import useAccountTypes from '@/hooks/account_type/useAccountTypes';
+import { Controller, useForm } from 'react-hook-form';
 
 const AccountModal = () => {
   const [selected, setSelected] = useState<AccountType>()
+  const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
+    defaultValues: {
+      name: '',
+      balance: '0',
+      type: undefined
+    }
+  })
+  const { data: accountTypes, isLoading} = useAccountTypes()
 
   function handleIcon(type: string, active?: boolean) {
     switch (type) {
@@ -40,56 +30,81 @@ const AccountModal = () => {
         break;
     }
   }
-  
+
   return (
     <dialog id="account_type_modal" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
         <h3 className="font-bold text-lg mb-6">Add Account</h3>
-        <form action="">
+        <form onSubmit={handleSubmit(data => {
+          console.log(data);
+        })}>
           <Input
             label='Name'
             type='text'
             placeholder='e.g. E-Wallet'
+            register={register("name", { required: "Name is required" })}
+            error={errors.name}
           />
-          <Select<AccountType>
-            label='Type'
-            value={selected}
-            options={accountTypes}
-            onChange={(value) => setSelected(value)}
-            option={(value, isActive, isSelected) => (
-              <>
-                {handleIcon(value.icon, isActive)}
-                <span
-                  className={`ml-3 block truncate ${isSelected ? 'font-semibold' : 'font-normal'}`}
-                >
-                  {value.name}
-                </span>
-              </>
-            )}
-            selected={(value) => (
-              <span className='flex items-center'>
-                {handleIcon(value.icon)}  
-                <span className="ml-3 block truncate">{value.name}</span>
-              </span>
+          <Input
+            label='Initial Balance'
+            type='number'
+            register={register('balance', { required: "Balance is required" })}
+            error={errors.balance}
+          />
+          <Controller
+            name='type'
+            control={control}
+            rules={{
+              required: "Select an account type",
+            }}
+            render={({ field: { onChange, value } }) => (
+              <Select<AccountType>
+                label='Type'
+                isLoading={isLoading}
+                value={value}
+                options={accountTypes?.data?.result ?? []}
+                error={errors.type}
+                onChange={onChange}
+                option={(type, isActive, isSelected) => (
+                  <>
+                    {handleIcon(type.icon, isActive)}
+                    <span
+                      className={`ml-3 block truncate ${isSelected ? 'font-semibold' : 'font-normal'}`}
+                    >
+                      {type.name}
+                    </span>
+                  </>
+                )}
+                selected={(selected) => (
+                  <span className='flex items-center'>
+                    {handleIcon(selected.icon)}  
+                    <span className="ml-3 block truncate">{selected.name}</span>
+                  </span>
+                )}
+              />
             )}
           />
+          
           <div className='h-32'/>
+          <div className="modal-action">
+            <button
+              className="btn"
+              type='reset'
+              onClick={() => {
+                reset()
+                window.account_type_modal.close()
+              }}
+            >
+              Close
+            </button>
+            <button
+              className="btn bg-primary text-white"
+              type='submit'
+            >
+              Save
+            </button>
+          </div>
         </form>
-        <div className="modal-action">
-          {/* if there is a button in form, it will close the modal */}
-          <button
-            className="btn"
-            onClick={() => window.account_type_modal.close()}
-          >
-            Close
-          </button>
-          <button
-            className="btn bg-primary text-white"
-            type='submit'
-          >
-            Save
-          </button>
-        </div>
       </div>
     </dialog>
   )

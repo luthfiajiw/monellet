@@ -52,7 +52,7 @@ export default function Sidebar() {
   return (
     <aside className="hidden lg:flex flex-col justify-between bg-white h-screen">
       <div>
-        <div className='py-3 ml-5'>
+        <div className='py-3 ml-5 mt-1.5'>
           <img
             width={35}
             className='mb-2 ml-0.5'
