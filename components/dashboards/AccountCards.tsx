@@ -78,7 +78,7 @@ export default function AccountCards({}: Props) {
           )
         })}
         <div
-          onClick={() => window.account_type_modal.showModal()}
+          onClick={() => window.account_modal.showModal()}
           className="
             p-3 bg-white rounded-lg flex flex-col
             items-center justify-center gap-1 cursor-pointer

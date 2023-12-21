@@ -1,7 +1,6 @@
-import fetcher from "@/lib/fetcher"
-import useSWR from "swr"
+import { fetcher } from "@/lib/request"
 import useAccountTypeState from "./states/useAccountTypeState"
-import axios, { AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 
 const useAccountTypes = (id?: string) => {
   const {

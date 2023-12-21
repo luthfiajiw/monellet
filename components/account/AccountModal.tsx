@@ -7,9 +7,12 @@ import Select from '../forms/Select';
 import useAccountTypes from '@/hooks/account_type/useAccountTypes';
 import { Controller, useForm } from 'react-hook-form';
 import ColorBox from '../forms/ColorBox';
+import LoadingButton from '../buttons/LoadingButton';
+import useAccount from '@/hooks/account/useAccount';
 
 const AccountModal = () => {
   const [selected, setSelected] = useState<AccountType>()
+  const { loadingSave } = useAccount()
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
@@ -34,7 +37,7 @@ const AccountModal = () => {
   }
 
   return (
-    <dialog id="account_type_modal" className="modal modal-bottom sm:modal-middle">
+    <dialog id="account_modal" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
         <h3 className="font-bold text-lg mb-6">Add Account</h3>
         <form onSubmit={handleSubmit(data => {
@@ -105,22 +108,26 @@ const AccountModal = () => {
           />
           
           <div className="modal-action">
-            <button
-              className="btn"
+            <LoadingButton
+              loading={false}
+              bgColor='bg-white hover:bg-red-100'
+              borderColor='border-red-700'
+              labelColor='text-red-500'
               type='reset'
+              label='Cancel'
               onClick={() => {
                 reset()
-                window.account_type_modal.close()
+                window.account_modal.close()
               }}
-            >
-              Close
-            </button>
-            <button
-              className="btn bg-primary text-white"
+            />
+            <LoadingButton
+              loading={loadingSave}
+              bgColor='bg-green-500 hover:bg-green-700'
+              borderColor='border-green-700'
+              labelColor='text-white'
               type='submit'
-            >
-              Save
-            </button>
+              label='Save'
+            />
           </div>
         </form>
       </div>

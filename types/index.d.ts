@@ -2,6 +2,6 @@ export {};
 
 declare global {
   interface Window {
-    account_type_modal: any;
+    account_modal: any;
   }
 }

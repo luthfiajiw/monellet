@@ -3,7 +3,7 @@
 import Card from "@/components/cards/Card";
 import Loading from "@/components/layouts/Loading";
 import useSignIn from "@/hooks/auth/useSignIn";
-import fetcher from "@/lib/fetcher";
+import { fetcher } from "@/lib/request";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { FunctionComponent, useCallback, useEffect, useRef } from "react";

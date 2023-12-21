@@ -1,5 +1,5 @@
 import Loading from "@/components/layouts/Loading";
-import fetcher from "@/lib/fetcher";
+import { fetcher } from "@/lib/request";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 

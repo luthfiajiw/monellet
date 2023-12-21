@@ -1,9 +1,17 @@
 import useAccountState from "./states/useAccountState"
 
 const useAccount = () => {
-  const { loading, setLoading } = useAccountState()
+  const {
+    loadingSave, setLoadingSave
+  } = useAccountState()
 
-  // async function onCreateAccount(params:type) {
+  async function onCreate(body: FormAccount) {
     
-  // }
+  }
+
+  return {
+    loadingSave
+  }
 }
+
+export default useAccount

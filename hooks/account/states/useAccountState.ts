@@ -1,13 +1,19 @@
 import { create } from "zustand"
 
 interface AccountStore {
-  loading: boolean
-  setLoading: (value: boolean) => void
+  loadingFetch: boolean
+  setLoadingFetch: (value: boolean) => void
+  loadingSave: boolean
+  setLoadingSave: (value: boolean) => void
+  account: Account[]
 }
 
 const useAccountState = create<AccountStore>((set) => ({
-  loading: false,
-  setLoading: (value) => set({ loading: value })
+  loadingFetch: false,
+  setLoadingFetch: (value) => set({ loadingFetch: value }),
+  loadingSave: false,
+  setLoadingSave: (value) => set({ loadingSave: value }),
+  account: []
 }))
 
 export default useAccountState

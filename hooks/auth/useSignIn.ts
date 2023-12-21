@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
-import fetcher from "@/lib/fetcher";
+import { fetcher } from "@/lib/request";
 
 const useSignIn = () => {
   const router = useRouter()

@@ -12,4 +12,7 @@ axios.interceptors.request.use((req: InternalAxiosRequestConfig) => {
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
-export default fetcher
+export {
+  axios,
+  fetcher
+}
