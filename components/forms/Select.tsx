@@ -73,7 +73,7 @@ function Select<T>(props: Props<T>) {
                     {props.isLoading && (
                       <Listbox.Option value="Type">
                         <CgSpinner
-                          className="animate-spin color-primary my-1 m-auto"
+                          className="animate-spin text-blue-500 my-1 m-auto"
                           size={22}
                         />
                       </Listbox.Option>
@@ -85,7 +85,7 @@ function Select<T>(props: Props<T>) {
                           key={index}
                           className={({ active }) => 
                             classNames(
-                              active ? 'bg-primary text-white' : 'text-gray-900',
+                              active ? 'bg-blue-500 text-white' : 'text-gray-900',
                               'relative cursor-default select-none py-2 pl-3 pr-9'
                             )
                           }
@@ -101,7 +101,7 @@ function Select<T>(props: Props<T>) {
                                 {selected ? (
                                   <span
                                     className={classNames(
-                                      active ? 'text-white' : 'color-primary',
+                                      active ? 'text-white' : 'text-blue-500',
                                       'absolute inset-y-0 right-0 flex items-center pr-4'
                                     )}
                                   >

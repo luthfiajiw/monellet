@@ -9,16 +9,17 @@ import { Controller, useForm } from 'react-hook-form';
 import ColorBox from '../forms/ColorBox';
 import LoadingButton from '../buttons/LoadingButton';
 import useAccount from '@/hooks/account/useAccount';
+import NumberInput from '../forms/NumberInput';
 
 const AccountModal = () => {
   const [selected, setSelected] = useState<AccountType>()
-  const { loadingSave } = useAccount()
+  const { loadingSave, onCreate } = useAccount()
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
-      balance: '0',
-      color: undefined,
-      type: undefined
+      balance: 0,
+      color: '',
+      account_type: undefined
     }
   })
   const { accountTypes, loadingFetch, onGet } = useAccountTypes()
@@ -41,7 +42,7 @@ const AccountModal = () => {
       <div className="modal-box">
         <h3 className="font-bold text-lg mb-6">Add Account</h3>
         <form onSubmit={handleSubmit(data => {
-          console.log(data);
+          onCreate(data)
         })}>
           <Input
             label='Name'
@@ -50,14 +51,23 @@ const AccountModal = () => {
             register={register("name", { required: "Name is required" })}
             error={errors.name}
           />
-          <Input
-            label='Initial Balance'
-            type='number'
-            register={register('balance', { required: "Balance is required" })}
-            error={errors.balance}
+          <Controller
+            name='balance'
+            control={control}
+            rules={{
+              required: "Balance is required"
+            }}
+            render={({ field }) => (
+              <NumberInput
+                label='Initial Balance'
+                value={field.value}
+                error={errors.balance}
+                onValueChange={(values, _) => field.onChange(values.floatValue)}
+              />
+            )}
           />
           <Controller
-            name='type'
+            name='account_type'
             control={control}
             rules={{
               required: "Select an account type",
@@ -68,7 +78,7 @@ const AccountModal = () => {
                 isLoading={loadingFetch}
                 value={value}
                 options={accountTypes}
-                error={errors.type}
+                error={errors.account_type}
                 onChange={onChange}
                 onClick={onGet}
                 option={(type, isActive, isSelected) => (
@@ -122,8 +132,8 @@ const AccountModal = () => {
             />
             <LoadingButton
               loading={loadingSave}
-              bgColor='bg-green-500 hover:bg-green-700'
-              borderColor='border-green-700'
+              bgColor='bg-blue-500 hover:bg-blue-700'
+              borderColor='border-blue-700'
               labelColor='text-white'
               type='submit'
               label='Save'

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FieldError } from 'react-hook-form';
+import { MdCheckCircle } from 'react-icons/md';
 
 interface IColorBoxProps {
   value?: string
@@ -19,10 +20,12 @@ const ColorBox: React.FunctionComponent<IColorBoxProps> = (props) => {
       <div className='flex flex-wrap'>
         {colors.map(color => (
           <div
-            className={`${props.value == color ? 'p-3.5' : 'p-4'} rounded mr-2 mb-2 ${props.value == color ? 'border-2 border-slate-400' : ''}`}
+            className={`${props.value == color ? 'p-1.5' : 'p-4'} rounded mr-2 mb-2 ${props.value == color ? 'border-2 border-white' : ''}`}
             style={{ backgroundColor: `${color}` }}
             onClick={() => props.onChange(color)}
-          />
+          >
+            {props.value == color && <MdCheckCircle color='white'/>}
+          </div>
         ))}
       </div>
       {props.error && (
