@@ -5,7 +5,6 @@ interface AccountStore {
   setLoadingFetch: (value: boolean) => void
   loadingSave: boolean
   setLoadingSave: (value: boolean) => void
-  account: Account[]
 }
 
 const useAccountState = create<AccountStore>((set) => ({
@@ -13,7 +12,6 @@ const useAccountState = create<AccountStore>((set) => ({
   setLoadingFetch: (value) => set({ loadingFetch: value }),
   loadingSave: false,
   setLoadingSave: (value) => set({ loadingSave: value }),
-  account: []
 }))
 
 export default useAccountState

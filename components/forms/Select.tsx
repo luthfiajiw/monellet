@@ -16,8 +16,8 @@ interface Props<T> {
   error?: FieldError
   onClick?: () => void
   onChange: (value: T) => void
-  selected: (value: T) => React.ReactElement,
-  option: (value: T, isActive: boolean, isSelected: boolean) => React.ReactElement
+  renderSelected: (value: T) => React.ReactElement,
+  renderOption: (value: T, isActive: boolean, isSelected: boolean) => React.ReactElement
 }
 
 function Select<T>(props: Props<T>) {
@@ -44,7 +44,7 @@ function Select<T>(props: Props<T>) {
                   className={`relative border ${props.error && 'border-red-500'} w-full cursor-default rounded bg-white px-3 py-[0.675rem] leading-tight text-left text-gray-900 sm:text-sm focus:outline-none focus:shadow-outline`}
                 >
                   { props.value
-                    ? props.selected(props.value)
+                    ? props.renderSelected(props.value)
                     : <span className="block truncate text-neutral-400">Select {props.label}</span>
                   }
                   <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -93,22 +93,9 @@ function Select<T>(props: Props<T>) {
                         >
                           {({ selected, active }) => {
                             return (
-                              <>
-                                <div className="flex items-center">
-                                  {props.option(option, active, selected)}
-                                </div>
-
-                                {selected ? (
-                                  <span
-                                    className={classNames(
-                                      active ? 'text-white' : 'text-blue-500',
-                                      'absolute inset-y-0 right-0 flex items-center pr-4'
-                                    )}
-                                  >
-                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                  </span>
-                                ) : null}
-                              </>
+                              <div className="flex items-center">
+                                {props.renderOption(option, active, selected)}
+                              </div>
                             )
                           }}
                         </Listbox.Option>

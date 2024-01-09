@@ -8,12 +8,11 @@ import useAccountTypes from '@/hooks/account_type/useAccountTypes';
 import { Controller, useForm } from 'react-hook-form';
 import ColorBox from '../forms/ColorBox';
 import LoadingButton from '../buttons/LoadingButton';
-import useAccount from '@/hooks/account/useAccount';
+import useAccounts from '@/hooks/account/useAccount';
 import NumberInput from '../forms/NumberInput';
 
 const AccountModal = () => {
-  const [selected, setSelected] = useState<AccountType>()
-  const { loadingSave, onCreate } = useAccount()
+  const { loadingSave, onCreate } = useAccounts()
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
@@ -42,7 +41,10 @@ const AccountModal = () => {
       <div className="modal-box">
         <h3 className="font-bold text-lg mb-6">Add Account</h3>
         <form onSubmit={handleSubmit(data => {
-          onCreate(data)
+          onCreate(data).then(() => {
+            reset()
+            window.account_modal.close()
+          })
         })}>
           <Input
             label='Name'
@@ -81,7 +83,7 @@ const AccountModal = () => {
                 error={errors.account_type}
                 onChange={onChange}
                 onClick={onGet}
-                option={(type, isActive, isSelected) => (
+                renderOption={(type, isActive, isSelected) => (
                   <>
                     {handleIcon(type.icon, isActive)}
                     <span
@@ -91,7 +93,7 @@ const AccountModal = () => {
                     </span>
                   </>
                 )}
-                selected={(selected) => (
+                renderSelected={(selected) => (
                   <span className='flex items-center'>
                     {handleIcon(selected.icon)}  
                     <span className="ml-3 block truncate">{selected.name}</span>

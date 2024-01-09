@@ -16,7 +16,7 @@ const LoadingButton: React.FunctionComponent<ILoadingButtonProps> = (props) => {
     <button
       onClick={props.onClick}
       disabled={props.loading}
-      className={`${props.bgColor} ${props.labelColor} py-2 ${props.loading ? 'pl-4 pr-5' : 'px-5'} border ${props.borderColor} rounded inline-flex items-center text-sm`}
+      className={`${props.bgColor} ${props.labelColor} py-1.5 ${props.loading ? 'pl-4 pr-5' : 'px-5'} border ${props.borderColor} rounded inline-flex items-center text-sm`}
       type={props.type}
     >
       {props.loading && <CgSpinner

@@ -1,13 +1,13 @@
 import { AxiosResponse } from "axios"
 import useAccountState from "./states/useAccountState"
-import { axios } from "@/lib/request"
+import { axios, fetcher } from "@/lib/request"
 import toast from "react-hot-toast"
+import useSWR from "swr"
 
-const useAccount = (id?: string) => {
+const useAccounts = (id?: string) => {
   const path = id ? `/api/accounts/${id}` : '/api/accounts'
-  const {
-    loadingSave, setLoadingSave
-  } = useAccountState()
+  const { loadingSave, setLoadingSave, loadingFetch, setLoadingFetch } = useAccountState()
+  const { data, error, isLoading, mutate } = useSWR(path, fetcher)
 
   async function onCreate(body: FormAccount) {
     try {
@@ -17,7 +17,6 @@ const useAccount = (id?: string) => {
 
       setLoadingSave(false)
       toast.success("New Acount Created")
-      window.account_modal.close()
     } catch (error) {
       throw(error)
     }
@@ -25,8 +24,8 @@ const useAccount = (id?: string) => {
 
   return {
     loadingSave,
-    onCreate
+    onCreate,
   }
 }
 
-export default useAccount
+export default useAccounts

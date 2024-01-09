@@ -59,8 +59,6 @@ export async function DELETE(
   req: Request,
   { params }: { params: { accountId: string } }
 ) {
-  console.log(params.accountId);
-  
   const session: Session = await serverAuth(req)
 
   try {
